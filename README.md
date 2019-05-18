@@ -9,7 +9,7 @@
 1. Standardize time series
 2. Compute Piecewise Aggregate Aproximation, i.e. split series into equily sized intervals
 3. Compute PAA's breakpoints (with respect to values' domain). The number of breakpoints is equal to the number of symbols (descrete values a.k.a vocabulary size) 
-4. Convert PAA to symbols
+4. Convert PAA to symbols using breakpoints
 
 ## _sax.py_, convert continuous time series to string:
 **_Note_**: although **PAA size** is used on the original **SAX** algorithms the code contains an option that allows one to select a **window size** instead (PAA size is computed based on window size and times series' length).
