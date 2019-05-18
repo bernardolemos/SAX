@@ -5,6 +5,8 @@ import pandas as pd
 from time import time
 from scipy.stats import norm
 from scipy.spatial.distance import euclidean
+from editing_dist_n_lcs_dp import edit_distance
+from editing_dist_n_lcs_dp import lcs
 
 #global variables
 # BREAK_POINTS = []
@@ -14,6 +16,17 @@ from scipy.spatial.distance import euclidean
 # TODO find optimal VOCAB_SIZE & PAA_SIZE OR WINDOW_SIZE
 # TODO compare multiple series
 # TODO find motifs (cycles)
+
+def matrix_to_df(cols, matrix):
+    """
+    Convert matrix of time series to pd.DataFrame
+    """
+    df = pd.DataFrame()
+
+    for i in range(len(cols)):
+      df[cols[i]] = matrix[i]  
+
+    return df
 
 def znorm(ts):
     """
@@ -274,8 +287,6 @@ def main(args):
     cols = list(df.columns)
     #switch columns with rows (=>row is a time series)
     data = data.T
-    print(data)
-    input("data ^")
     #read arguments
     # n = len of series
     VOCAB_SIZE = args.vocab_size
@@ -307,28 +318,42 @@ def main(args):
         ts_sax_l.append(ts_sax)
 
     n_series = data.shape[0]
-    #Data Frames
-    tbl_df = pd.DataFrame()
-    sax_df = pd.DataFrame()
-    dists_df = pd.DataFrame()
     # compute TLS
-    print("Computing TLS...")
+    tbl_df = pd.DataFrame()
+    edd_df = pd.DataFrame()
+    lcs_df = pd.DataFrame()
+    print("Computing TLS, Editing distance and LCS...")
     for i in range(n_series):
-        aux = np.zeros(n_series)
+        tlb = np.zeros(n_series)
+        edd = np.zeros(n_series)
+        lcs_ = np.zeros(n_series)
         for j in range(i+1, n_series):
-            aux[j] = get_tightness_of_lower_bound(lookup_table, data[i], data[j], ts_sax_l[i],  ts_sax_l[j])
-        tbl_df[cols[i]] = aux
+            tlb[j] = get_tightness_of_lower_bound(lookup_table, data[i], data[j], ts_sax_l[i],  ts_sax_l[j])
+            edd[j] = edit_distance(ts_sax_l[i], ts_sax_l[j])
+            lcs_[j] = lcs(ts_sax_l[i], ts_sax_l[j])
+        tbl_df[cols[i]] = tlb
+        edd_df[cols[i]] = edd
+        lcs_df[cols[i]] = lcs_
     
+    # compute distences 
+
+
     # store files
     if not os.path.exists(args.out_path):
         os.makedirs(args.out_path)
     #TBL
     tbl_df.to_csv(os.path.join(args.out_path, "tlb.csv"), index=False)
-    # from editing_dist_n_lcs_dp import edit_distance
-    # from editing_dist_n_lcs_dp import lcs
-    # print("Editing distance:", edit_distance(ts_sax_aapl, ts_sax_jpm))
-    # print("LCS:", lcs(ts_sax_aapl, ts_sax_jpm))
-
+    #edd
+    edd_df.to_csv(os.path.join(args.out_path, "edd.csv"), index=False)
+    #lcs
+    lcs_df.to_csv(os.path.join(args.out_path, "lcs.csv"), index=False)
+    #SAX
+    sax_df = matrix_to_df(cols, ts_sax_l)
+    sax_df.to_csv(os.path.join(args.out_path, "sax.csv"), index=False)
+    #PAA
+    paa_df = matrix_to_df(cols, ts_paa_l)
+    paa_df.to_csv(os.path.join(args.out_path, "paa.csv"), index=False)
+    
     print("Total time:", time() - st, "sec.")
 
 
@@ -342,5 +367,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args)
-
-
