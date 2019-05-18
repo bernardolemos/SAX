@@ -15,7 +15,7 @@
 **_Note_**: although **PAA size** is used on the original **SAX** algorithms the code contains an option that allows one to select a **window size** instead (PAA size is computed based on window size and times series' length).
 * The code reads time series from a `csv` file (see _sample100.csv_). It thens stores all the intermediate steps and SAX represention of series in a target directory
 * **_Tightness of Lower Bound_** is computed and stored for all pairs (_see references_)
-* Moreover, this repo includes ... that are also computed and stored for all pairs
+* Moreover, this repo includes *editing_dist_n_lcs_dp.py* that computes the editing distance and longest common susequence (lcs). They are computed for all pairs
 
 ### The example bellow represents the application of the SAX algorithm to two time series, using a PAA size of 9 and a vocabulary of size 4. 
 |||
