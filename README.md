@@ -11,7 +11,7 @@
 3. Compute PAA's breakpoints (with respect to values' domain). The number of breakpoints is equal to the number of symbols (descrete values a.k.a vocabulary size) 
 4. Convert PAA to symbols
 
-## _sax.py_, convert continuois time series to string:
+## _sax.py_, convert continuous time series to string:
 **_Note_**: although **PAA size** is used on the original **SAX** algorithms the code contains an option that allows one to select a **window size** instead (PAA size is computed based on window size and times series' length).
 * The code reads time series from a `csv` file (see _sample100.csv_). It thens stores all the intermediate steps and SAX represention of series in a target directory
 * **_Tightness of Lower Bound_** is computed and stored for all pairs (_see references_)
