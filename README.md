@@ -17,6 +17,12 @@
 * **_Tightness of Lower Bound_** is computed and stored for all pairs (_see references_)
 * Moreover, this repo includes ... that are also computed and stored for all pairs
 
+### The example bellow represents the application of the SAX algorithm to two time series, using a PAA size of 9 and a vocabulary of size 4. 
+|||
+|:-------------------------:|:-------------------------:|
+|<img width="500" src="./images/sax_paa9.png">|<img width="500" src="./images/sax_vocab4.png">|
+_source_: [Symbolic Aggregate approXimation.](https://jmotif.github.io/sax-vsm_site/morea/algorithm/SAX.html)
+
 ## Usage
 ### The **vocabulary** and **PAA size** are tunable via command line.
 ### Options
