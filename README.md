@@ -1,4 +1,4 @@
-# Symbolic Aggregate Aproximation (_SAX_)
+# Symbolic Aggregate aproXimation (_SAX_)
 ## SAX algorithm implementaion as in:
 * ref1
 * ref2
