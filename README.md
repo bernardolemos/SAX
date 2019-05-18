@@ -1,7 +1,7 @@
 # Symbolic Aggregate aproXimation (_SAX_)
 ## SAX algorithm implementaion as in:
 * [HOT SAX: Finding the Most Unusual Time Series Subsequence: Algorithms and Applications](https://www.cs.ucr.edu/~eamonn/HOT%20SAX%20%20long-ver.pdf) 
-* [SAX: Indexing and Mining Terabyte Sized Time Series](https://www.cs.ucr.edu/~eamonn/iSAX.pdf)
+* [iSAX: Indexing and Mining Terabyte Sized Time Series](https://www.cs.ucr.edu/~eamonn/iSAX.pdf)
 * [Symbolic Aggregate approXimation.](https://jmotif.github.io/sax-vsm_site/morea/algorithm/SAX.html)
 
 ## The SAX algorithm converts a time series of continuous values to descrete values
