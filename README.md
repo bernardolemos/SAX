@@ -7,7 +7,7 @@
 ## The SAX algorithm converts a time series of continuous values to descrete values
 ### The algotihms steps are the following:
 1. Standardize time series
-2. Compute Piecewise Aggregate Aproximation(PAA), i.e. split series into equally sized intervals
+2. Compute Piecewise Aggregate Aproximation (PAA), i.e. split series into equally sized intervals
 3. Compute PAA's breakpoints (with respect to values' domain). The number of breakpoints is equal to the number of symbols (descrete values a.k.a vocabulary size) 
 4. Convert PAA to symbols using breakpoints
 
